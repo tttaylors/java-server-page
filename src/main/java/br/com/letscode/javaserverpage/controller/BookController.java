@@ -1,42 +1,55 @@
 package br.com.letscode.javaserverpage.controller;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
 import br.com.letscode.javaserverpage.service.BookService;
 import br.com.letscode.javaserverpage.model.Book;
 import org.springframework.stereotype.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/book")
 public class BookController {
 
     private final BookService bookService;
 
-    @GetMapping("/viewBooks")
-    public String viewBooks(Model model) {
-        model.addAttribute("books", bookService.getBooks());
-        return "view-books";
+    @RequestMapping("/read-book")
+    public String showReadBookPage(Model model) {
+        model.addAttribute("books", bookService.findAll());
+        return "readBook";
     }
 
-    @GetMapping("/addBook")
-    public String addBookView(Model model) {
-        model.addAttribute("book", new Book());
-        return "add-book";
+    @RequestMapping("/create-book")
+    public String showCreateBookPage(Model model) {
+        model.addAttribute("command", new Book());
+        return "createBook";
     }
 
-    @PostMapping("/addBook")
-    public RedirectView addBook(@ModelAttribute("book") Book book, RedirectAttributes redirectAttributes) {
-        final RedirectView redirectView = new RedirectView("/book/addBook", true);
-        Book savedBook = bookService.addBook(book);
-        redirectAttributes.addFlashAttribute("savedBook", savedBook);
-        redirectAttributes.addFlashAttribute("addBookSuccess", true);
-        return redirectView;
+    @RequestMapping(value = "/create-book", method = RequestMethod.POST)
+    public String createBook(@ModelAttribute("book") Book book) {
+        bookService.save(book);
+        return "redirect:/read-book";
+    }
+
+    @RequestMapping(value = "/update-book/{id}")
+    public String showUpdateBookPage(@PathVariable Long id, Model model) {
+        model.addAttribute("id", id);
+        model.addAttribute("command", bookService.findById(id));
+        return "updateBook";
+    }
+
+    @RequestMapping(value = "/update-book/{id}", method = RequestMethod.POST)
+    public String updateBook(@PathVariable Long id, @ModelAttribute("book") Book book) {
+        bookService.update(id, book);
+        return "redirect:/read-book";
+    }
+
+    @RequestMapping(value = "/delete-book/{id}")
+    public String deleteBook(@PathVariable Long id) {
+        bookService.deleteById(id);
+        return "redirect:/read-book";
     }
 }

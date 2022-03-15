@@ -1,17 +1,11 @@
 package br.com.letscode.javaserverpage.model;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-
+import lombok.*;
 import javax.persistence.*;
 
-@Data
+@Setter
+@Getter
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Book {
 
     @Id

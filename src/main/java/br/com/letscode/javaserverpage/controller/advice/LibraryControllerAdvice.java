@@ -1,6 +1,6 @@
 package br.com.letscode.javaserverpage.controller.advice;
 
-import br.com.letscode.javaserverpage.exception.DuplicateBookException;
+import br.com.letscode.javaserverpage.controller.exception.DuplicateBookException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;

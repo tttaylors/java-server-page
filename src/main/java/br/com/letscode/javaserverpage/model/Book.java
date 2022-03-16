@@ -1,6 +1,7 @@
 package br.com.letscode.javaserverpage.model;
 
 import lombok.*;
+
 import javax.persistence.*;
 
 @Setter

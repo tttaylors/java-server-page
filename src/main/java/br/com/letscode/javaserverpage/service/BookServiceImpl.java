@@ -6,6 +6,7 @@ import br.com.letscode.javaserverpage.repository.BookRepository;
 import br.com.letscode.javaserverpage.model.Book;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
+
 import java.util.Optional;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public void save(Book bookRequest) {
         Optional<Book> bookEntity = bookRepository.findByIsbn(bookRequest.getIsbn());
-        if(bookEntity.isPresent()) {
+        if (bookEntity.isPresent()) {
             throw new DuplicateBookException(bookRequest);
         }
         bookRepository.save(bookRequest);

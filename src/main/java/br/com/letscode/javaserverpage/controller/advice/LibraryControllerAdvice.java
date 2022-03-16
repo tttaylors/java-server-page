@@ -14,7 +14,7 @@ public class LibraryControllerAdvice {
         modelAndView.addObject("reference", e.getBook().getIsbn());
         modelAndView.addObject("object", e.getBook());
         modelAndView.addObject("message", "Cannot add an already existing book");
-        modelAndView.setViewName("error-book");
+        modelAndView.setViewName("error/errorBook");
         return modelAndView;
     }
 }

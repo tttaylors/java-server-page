@@ -1,7 +1,7 @@
 package br.com.letscode.javaserverpage.service;
 
-import br.com.letscode.javaserverpage.controller.exception.BookNotFoundException;
-import br.com.letscode.javaserverpage.controller.exception.DuplicateBookException;
+import br.com.letscode.javaserverpage.controller.execptionhandler.exception.BookNotFoundException;
+import br.com.letscode.javaserverpage.controller.execptionhandler.exception.DuplicateBookException;
 import br.com.letscode.javaserverpage.repository.BookRepository;
 import br.com.letscode.javaserverpage.model.Book;
 import org.springframework.stereotype.Service;

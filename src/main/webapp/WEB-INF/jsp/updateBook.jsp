@@ -1,6 +1,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" href="<c:url value="/css/style.css"/>">
+<%--<link rel="stylesheet" href="<c:url value="/css/style.css"/>">--%>
 
 <h1>Update Book</h1>
 <jsp:useBean id="id" scope="request" type="java.lang.Long"/>

@@ -1,4 +1,4 @@
-package br.com.letscode.javaserverpage.controller.exception;
+package br.com.letscode.javaserverpage.controller.execptionhandler.exception;
 
 import br.com.letscode.javaserverpage.model.Book;
 import lombok.Getter;
